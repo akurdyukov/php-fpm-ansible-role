@@ -1,0 +1,12 @@
+---
+
+php_fpm_conf_dir: /etc/php5/fpm
+
+php_fpm_delete_default_pool: true
+
+php_fpm_post_max_size: 8M
+php_fpm_max_execution_time: 30
+php_fpm_max_input_time: 60
+php_fpm_memory_limit: 128M
+php_fpm_time_zone: UTC
+php_fpm_upload_max_file_size: 2M
