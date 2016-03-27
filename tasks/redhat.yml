@@ -1,0 +1,27 @@
+---
+- name: Install PHP FastCGI
+  yum: name=php-fpm state=present
+  tags:
+    - php-fpm
+
+- name: Delete default pool
+  file: state=absent path=/etc/php-fpm.d/www.conf
+  when: php_fpm_delete_default_pool
+  notify:
+    - restart php-fpm
+  tags:
+    - php-fpm
+
+- name: Create php.ini configuration file
+  template: src=php.ini.j2 dest=/etc/php.ini owner=root group=root mode=0644
+  notify:
+    - restart php-fpm
+  tags:
+    - php-fpm
+    
+# - name: Create php-fpm.conf configuration file
+#   template: src=php-fpm.conf.j2 dest=/etc/php5/fpm/php-fpm.conf owner=root group=root mode=0644
+#   notify:
+#     - restart php-fpm
+#   tags:
+#     - php-fpm
